@@ -51,4 +51,9 @@ router.post("/login", async (req, res) => {
   res.json({ token });
 });
 
+// admin - get - array of users
+// verify admin
+// respond with all users or reject req
+router.get("/");
+
 module.exports = router;
