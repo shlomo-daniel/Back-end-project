@@ -5,9 +5,10 @@
  Content-Type: application/json
 
  {
-    "name": "gogytut",
-    "email": "aslljhl@gogytut.com",
+    "name": "iam_admin",
+    "email": "admin.me@admin.com",
     "biz": true,
+    "admin":true,
     "password": "unme555"
  }
 
@@ -16,10 +17,18 @@ POST  {{local}}/users/login
 Content-Type: application/json
 
 {
- "name": "gogytut",
- "email": "aslljhl@gogytut.com",
- "password":"unme555"
+    "email": "admin.me@admin.com",
+    "password": "unme555"
 }
+
+### Admin - get all users
+GET {{local}}/users
+x-auth-token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MDEwZmRjMDI2NDk1MDIwMmQyYjgiLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzY3MDcxNjN9.dSEveV7qeP3KpcavEKGCj4lbgbdfhBt1LYIcojAX6og"
+
+{
+
+}
+
 
 ### auth
 POST   {{local}}/api/auth
