@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
   admin: {
     type: Boolean,
   },
-  createdAt: { type: Date, default: Date.now },
+  createdAt: { type: Date, default: Date.now, immutable: true },
 });
 
 const User = mongoose.model("User", userSchema, "users");

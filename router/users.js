@@ -8,7 +8,6 @@ const authMW = require("../middleware/auth.middleware");
 const config = require("../config/auth.config");
 
 const { User, validateUser } = require("../model/users.schema");
-const { default: mongoose } = require("mongoose");
 
 //create user
 router.post("/", async (req, res) => {
@@ -35,18 +34,7 @@ router.post("/", async (req, res) => {
   res.json(_.pick(user, ["_id", "name", "email"]));
 });
 
-// admin - get all users
-router.get("/", authMW, async (req, res) => {
-  const { admin } = req.user;
-
-  if (!admin) {
-    res.status(403).send("unauthorized, you are not an admin");
-  }
-
-  const users = await User.find({});
-  res.send(users);
-});
-
+// log in
 router.post("/login", async (req, res) => {
   let user;
 
@@ -71,6 +59,42 @@ router.post("/login", async (req, res) => {
   res.json({ token });
 });
 
-// admin - get - array of users
+// admin - get all users
+router.get("/", authMW, async (req, res) => {
+  const { admin } = req.user;
 
+  if (!admin) {
+    res.status(403).send("unauthorized, you are not an admin");
+  }
+
+  const users = await User.find({}, { password: 0, __v: 0 });
+  res.send(users);
+});
+
+router.get("/:id", authMW, async (req, res) => {
+  const { id: userId } = req.params;
+
+  try {
+    const user = await User.findOne({ _id: userId });
+
+    res.send(user);
+  } catch (err) {
+    res.status(400).send(err.message);
+  }
+});
+
+// /:id - put - registered user - edit user - re edited user
+
+router.put("/:id", authMW, (req, res) => {
+  const { id: paramId } = req.params;
+
+  const user = User.findByIdAndUpdate(
+    paramId,
+    {
+      $set: { name: req.body.name },
+    },
+    { new: true }
+  );
+  res.send(user);
+});
 module.exports = router;

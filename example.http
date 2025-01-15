@@ -25,7 +25,21 @@ Content-Type: application/json
 GET {{local}}/users
 x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg2M2U0YzZlY2Y3ZWZlYTMwMDA3NzkiLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzY4NTU2Mjd9.7D7sGYx1uqlbkfcMCJS1wanCfzTE4FlqXrUR1EVia_s
 
+### get user by id
+GET {{local}}/users/675b2738a6c8f8f017fcc08f
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg2M2U0YzZlY2Y3ZWZlYTMwMDA3NzkiLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzY4NTU2Mjd9.7D7sGYx1uqlbkfcMCJS1wanCfzTE4FlqXrUR1EVia_s
 
+{
+}
+
+### update user
+PUT {{local}}/users/675b2738a6c8f8f017fcc08f
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg2M2U0YzZlY2Y3ZWZlYTMwMDA3NzkiLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzY4NTU2Mjd9.7D7sGYx1uqlbkfcMCJS1wanCfzTE4FlqXrUR1EVia_s
+Content-Type: application/javascript
+
+{
+  "name":"bobi bob"  
+}
 
 ### auth
 POST   {{local}}/api/auth
