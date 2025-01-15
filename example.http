@@ -5,8 +5,8 @@
  Content-Type: application/json
 
  {
-    "name": "iam_admin",
-    "email": "admin.me@admin.com",
+    "name": "iam_adminshlomi",
+    "email": "admin.me@adminsh.com",
     "biz": true,
     "admin":true,
     "password": "unme555"
@@ -17,17 +17,14 @@ POST  {{local}}/users/login
 Content-Type: application/json
 
 {
-    "email": "admin.me@admin.com",
+    "email": "admin.me@adminsh.com",
     "password": "unme555"
 }
 
 ### Admin - get all users
 GET {{local}}/users
-x-auth-token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MDEwZmRjMDI2NDk1MDIwMmQyYjgiLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzY3MDcxNjN9.dSEveV7qeP3KpcavEKGCj4lbgbdfhBt1LYIcojAX6og"
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg2M2U0YzZlY2Y3ZWZlYTMwMDA3NzkiLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzY4NTU2Mjd9.7D7sGYx1uqlbkfcMCJS1wanCfzTE4FlqXrUR1EVia_s
 
-{
-
-}
 
 
 ### auth

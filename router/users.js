@@ -3,12 +3,12 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const _ = require("lodash");
 const jwt = require("jsonwebtoken");
-const jwtDecode = require("jwt-decode");
+const authMW = require("../middleware/auth.middleware");
 
 const config = require("../config/auth.config");
 
 const { User, validateUser } = require("../model/users.schema");
-const { options } = require("joi");
+const { default: mongoose } = require("mongoose");
 
 //create user
 router.post("/", async (req, res) => {
@@ -36,16 +36,15 @@ router.post("/", async (req, res) => {
 });
 
 // admin - get all users
-router.get("/", (req, res) => {
-  const token = req.header("x-auth-token");
+router.get("/", authMW, async (req, res) => {
+  const { admin } = req.user;
 
-  const user = jwt.decode(token);
-  console.log(user);
+  if (!admin) {
+    res.status(403).send("unauthorized, you are not an admin");
+  }
 
-  // if (req.header.x -auth-token !== true) {
-  //   res.status(401).json({ error: "user is not admin, unauthorized" });
-  //   return;
-  // }
+  const users = await User.find({});
+  res.send(users);
 });
 
 router.post("/login", async (req, res) => {
@@ -68,6 +67,7 @@ router.post("/login", async (req, res) => {
     { _id: user._id, biz: user.biz, admin: Boolean(user.admin) },
     config.jwtKey
   );
+
   res.json({ token });
 });
 
