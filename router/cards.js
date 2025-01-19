@@ -7,6 +7,8 @@ const {
   generateBizNumber,
 } = require("../model/card.model");
 
+// get all cards - GET, no aouth, re all cards
+
 router.post("/", authMW, async (req, res) => {
   //   validate user's input
   const { error } = validateCard(req.body);

@@ -46,11 +46,25 @@ const Card = mongoose.model("Card", cardSchema, "cards");
 
 function validateCard(card) {
   const schema = Joi.object({
-    bizName: Joi.string().min(2).max(255).required(),
-    bizDescription: Joi.string().min(2).max(1024).required(),
-    bizAddress: Joi.string().min(2).max(400).required(),
-    bizPhone: Joi.string().min(9).max(10).required(),
-    bizImage: Joi.string().min(11).max(1024),
+    title: Joi.string().min(2).max(50).required(),
+    subtitle: Joi.string().min(2).max(70).required(),
+    description: Joi.string().min(2).max(400).required(),
+    phone: Joi.string().min(9).max(11).required(),
+    email: Joi.string().min(2).max(255).email().required(),
+    web: Joi.string().min(5).max(255),
+    image: {
+      url: Joi.string().min(2).max(500),
+      alt: Joi.string().min(2).max(100),
+    },
+    address: {
+      state: Joi.string().min(2).max(255).required(),
+      country: Joi.string().min(2).max(255),
+      city: Joi.string().min(2).max(255),
+      street: Joi.string().min(2).max(255),
+      houseNumber: Joi.number().min(2).max(10),
+      zip: Joi.number().min(2).max(15),
+    },
+    likes: [],
   });
   return schema.validate(card);
 }
