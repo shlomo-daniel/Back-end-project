@@ -14,8 +14,8 @@ app.use(cors);
 app.use(require("morgan")("dev"));
 app.use(express.json());
 
-app.use("/users", usersRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/users", usersRouter);
 app.use("/api/cards", cardsRouter);
 
 connect();

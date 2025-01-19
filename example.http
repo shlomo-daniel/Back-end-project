@@ -2,7 +2,7 @@
 @token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhjMzliZjIwYTQ1OTFhYTlhOWM4YTciLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzcyNDMxMDd9.RKI8HCA7chQaFRahu3zByhN3hLOtLDYEZBv-gLZVbT4
 
 ### register 
- POST {{local}}/users
+ POST {{local}}/api/users
  Content-Type: application/json
 
  {
@@ -14,7 +14,7 @@
  }
 
 ### log in
-POST  {{local}}/users/login
+POST  {{local}}/api/users/login
 Content-Type: application/json
 
 {
@@ -23,18 +23,18 @@ Content-Type: application/json
 }
 
 ### Admin - get all users
-GET {{local}}/users
+GET {{local}}/api/users
 x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhjMzliZjIwYTQ1OTFhYTlhOWM4YTciLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzcyNDMxMDd9.RKI8HCA7chQaFRahu3zByhN3hLOtLDYEZBv-gLZVbT4
 
 ### get user by id
-GET {{local}}/users/678c39bf20a4591aa9a9c8a7
+GET {{local}}/api/users/678c39bf20a4591aa9a9c8a7
 x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhjMzliZjIwYTQ1OTFhYTlhOWM4YTciLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzcyNDM2MDl9.ikXZ1NwUNEgv9UZtxXKYiGEuKv07Iv2_-kOk29h8Lrc
 
 {
 }
 
 ### update user
-PUT {{local}}/users/678c39bf20a4591aa9a9c8a7
+PUT {{local}}/api/users/678c39bf20a4591aa9a9c8a7
 x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhjMzliZjIwYTQ1OTFhYTlhOWM4YTciLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzcyNDM2MDl9.ikXZ1NwUNEgv9UZtxXKYiGEuKv07Iv2_-kOk29h8Lrc
 Content-Type: application/json
 
@@ -43,7 +43,7 @@ Content-Type: application/json
 }
 
 ### user - change biz status
-PATCH {{local}}/users/678c39bf20a4591aa9a9c8a7
+PATCH {{local}}/api/users/678c39bf20a4591aa9a9c8a7
 x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhjMzliZjIwYTQ1OTFhYTlhOWM4YTciLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzcyNDM2MDl9.ikXZ1NwUNEgv9UZtxXKYiGEuKv07Iv2_-kOk29h8Lrc
 Content-Type: application/json
 
@@ -52,7 +52,7 @@ Content-Type: application/json
 }
 
 ### user - delete
-DELETE {{local}}/users/678c39bf20a4591aa9a9c8a7
+DELETE {{local}}/api/users/678c39bf20a4591aa9a9c8a7
 x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhjMzliZjIwYTQ1OTFhYTlhOWM4YTciLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzcyNDM2MDl9.ikXZ1NwUNEgv9UZtxXKYiGEuKv07Iv2_-kOk29h8Lrc
 
 

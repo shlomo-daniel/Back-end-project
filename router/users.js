@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
   // valitate system
   let user = await User.findOne({ email: req.body.email });
   if (user) {
-    res.status(400).send("user is already created");
+    res.status(400).send("user has already neen created");
     return;
   }
 
