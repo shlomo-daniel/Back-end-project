@@ -4,9 +4,7 @@ const bcrypt = require("bcrypt");
 const _ = require("lodash");
 const jwt = require("jsonwebtoken");
 const authMW = require("../middleware/auth.middleware");
-
 const config = require("../config/auth.config");
-
 const { User, validateUser } = require("../model/users.schema");
 
 //create user
@@ -122,7 +120,7 @@ router.put("/:id", authMW, async (req, res) => {
   }
 });
 
-// edit user's isbusiness status value
+// edit user's business status value
 router.patch("/:id", authMW, async (req, res) => {
   const { id: paramId } = req.params;
 
@@ -174,4 +172,5 @@ router.delete("/:id", authMW, async (req, res) => {
 
   res.send(`${userToDelete?.name ?? "no user"} deleted`);
 });
+
 module.exports = router;
