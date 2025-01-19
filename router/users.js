@@ -71,11 +71,16 @@ router.get("/", authMW, async (req, res) => {
   res.send(users);
 });
 
+// get one user
 router.get("/:id", authMW, async (req, res) => {
   const { id: userId } = req.params;
 
   try {
-    const user = await User.findOne({ _id: userId });
+    const user = await User.findOne({ _id: userId }, { __v: 0, password: 0 });
+
+    if (!user) {
+      res.status(400).send("user is not found");
+    }
 
     res.send(user);
   } catch (err) {
@@ -83,18 +88,90 @@ router.get("/:id", authMW, async (req, res) => {
   }
 });
 
-// /:id - put - registered user - edit user - re edited user
-
-router.put("/:id", authMW, (req, res) => {
+// edit user
+router.put("/:id", authMW, async (req, res) => {
   const { id: paramId } = req.params;
 
-  const user = User.findByIdAndUpdate(
-    paramId,
-    {
-      $set: { name: req.body.name },
-    },
-    { new: true }
-  );
-  res.send(user);
+  try {
+    const userData = await User.findOne(
+      { _id: paramId },
+      { _id: 0, __v: 0, createdAt: 0 }
+    );
+
+    if (paramId !== req.user._id) {
+      res.status(401).send("unauthorized to edit user");
+      return;
+    }
+
+    const userDataObj = userData.toObject();
+    const updatedUser = { ...userDataObj, ...req.body };
+
+    const { error } = validateUser(updatedUser);
+    if (error) {
+      res.status(400).send(error.details[0].message);
+      return;
+    }
+
+    const user = await User.findByIdAndUpdate(paramId, updatedUser, {
+      new: true,
+    });
+
+    res.json(_.pick(user, ["_id", "name", "email"]));
+  } catch (error) {
+    res.status(500).send("error in server");
+  }
+});
+
+// edit user's isbusiness status value
+router.patch("/:id", authMW, async (req, res) => {
+  const { id: paramId } = req.params;
+
+  try {
+    const userData = await User.findOne(
+      { _id: paramId },
+      { _id: 0, __v: 0, createdAt: 0 }
+    );
+
+    if (paramId !== req.user._id) {
+      res.status(401).send("unauthorized to edit user");
+      return;
+    }
+
+    const bizStatus = req.body.biz;
+    const userDataObj = userData.toObject();
+    const updatedUser = { ...userDataObj, biz: bizStatus };
+
+    const { error } = validateUser(updatedUser);
+    if (error) {
+      res.status(400).send(error.details[0].message);
+      return;
+    }
+
+    const user = await User.findByIdAndUpdate(paramId, updatedUser, {
+      new: true,
+    });
+
+    res.json(_.pick(user, ["_id", "name", "email", "biz"]));
+  } catch (error) {
+    res.status(500).send("error in server");
+  }
+});
+
+// user - delete user
+router.delete("/:id", authMW, async (req, res) => {
+  const { id: paramId } = req.params;
+
+  const { admin } = req.user;
+
+  if (!admin || paramId !== req.user._id) {
+    res.status(401).send("unauthrized to delete user");
+  }
+
+  const userToDelete = await User.findByIdAndDelete(paramId, {
+    __v: 0,
+    password: 0,
+  });
+
+  res.send(`${userToDelete?.name ?? "no user"} deleted`);
 });
 module.exports = router;
