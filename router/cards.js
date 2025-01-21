@@ -91,7 +91,7 @@ router.delete("/:id", authMW, async (req, res) => {
 
     const deletedCard = await Card.findByIdAndDelete(cardID);
 
-    res.json(
+    res.send(
       deletedCard
         ? `card with the id of ${deletedCard._id} was deleted`
         : "card was not found to delete"
@@ -132,6 +132,22 @@ router.post("/", authMW, async (req, res) => {
 });
 
 // like card
-// router.patch("/:id",authMW,(req,res)=>{})
+router.patch("/:id", authMW, async (req, res) => {
+  try {
+    const { id: cardID } = req.params;
+    const { _id: userID } = req.user;
+
+    const likedCard = await Card.findByIdAndUpdate(
+      cardID,
+      {
+        $addToSet: { likes: userID },
+      },
+      { new: true }
+    );
+    res.json(likedCard);
+  } catch (error) {
+    res.status(500).send({ error, message: "server error" });
+  }
+});
 
 module.exports = router;

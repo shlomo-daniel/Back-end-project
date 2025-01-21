@@ -1,7 +1,7 @@
 @local=http://localhost:3005
 @token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhjMzliZjIwYTQ1OTFhYTlhOWM4YTciLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzcyNDMxMDd9.RKI8HCA7chQaFRahu3zByhN3hLOtLDYEZBv-gLZVbT4
 
-@cardID=678f0cae23f1992076fafba2
+@cardID=678f11afe02315ddcd9e638e
 
 ### get all cards
 GET {{local}}/api/cards
@@ -56,6 +56,12 @@ Content-Type: application/json
 
 ### delete card
 DELETE {{local}}/api/cards/{{cardID}}
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhjM2U2NGI5YjZmN2QyZWZlMTZmMGIiLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzczMjg0NTB9.-KzyhF7Zr3GqSS1ZAJ-bWMCQL35YVYz_uiGvFj-FKOQ
+
+{}
+
+### like card
+PATCH {{local}}/api/cards/{{cardID}}
 x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhjM2U2NGI5YjZmN2QyZWZlMTZmMGIiLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzczMjg0NTB9.-KzyhF7Zr3GqSS1ZAJ-bWMCQL35YVYz_uiGvFj-FKOQ
 
 {}
