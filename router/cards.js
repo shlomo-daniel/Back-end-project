@@ -45,17 +45,36 @@ router.get("/:id", async (req, res) => {
 });
 // edit card
 router.put("/:id", authMW, async (req, res) => {
-  const cardID = req.params.id;
-  const foundCard = await Card.findById(cardID);
-  const foundCardObj = foundCard.toObject();
+  try {
+    const cardID = req.params.id;
+    const foundCard = await Card.findById(cardID, {
+      _id: 0,
+      user_id: 0,
+      bizNumber: 0,
+      __v: 0,
+    });
+    const foundCardObj = foundCard.toObject();
 
-  console.log(req.body, "body");
-  const editedCard = {
-    ...req.body,
-    ...foundCardObj,
-  };
+    console.log(req.body, "body");
+    const updatedCard = {
+      ...foundCardObj,
+      ...req.body,
+    };
 
-  res.json(editedCard);
+    const { error } = validateCard(updatedCard);
+    if (error) {
+      res.status(400).send(error.details[0].message);
+      return;
+    }
+
+    const editedCard = await Card.findByIdAndUpdate(cardID, updatedCard, {
+      new: true,
+    });
+
+    res.json(editedCard);
+  } catch (error) {
+    res.status(500).send({ error, message: "server error" });
+  }
 });
 
 router.post("/", authMW, async (req, res) => {

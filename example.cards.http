@@ -44,5 +44,5 @@ x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhjM2U2NGI5YjZmN2
 Content-Type: application/json
 
 {
-  "phone":"055888888"
+  "phone":"0351111777"
 }
