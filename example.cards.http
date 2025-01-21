@@ -5,3 +5,44 @@
 GET {{local}}/api/cards
 
 {}
+
+### create card
+POST {{local}}/api/cards
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhjM2U2NGI5YjZmN2QyZWZlMTZmMGIiLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzczMjg0NTB9.-KzyhF7Zr3GqSS1ZAJ-bWMCQL35YVYz_uiGvFj-FKOQ
+Content-Type: application/json
+
+{
+  "title": "third card",
+  "subtitle": "this is the third card",
+  "description": "this is the third card in the database",
+  "phone": "050-0000000",
+  "email": "thirdcard@gmail.com",
+  "web": "https://www.test.co.il",
+  "image": {
+    "url": "https://cdn.pixabay.com/photo/2016/04/20/08/21/entrepreneur-1340649_960_720.jpg",
+    "alt": "business card image"
+  },
+  "address": {
+    "state": "israbotatoli",
+    "country": "test test",
+    "city": "test test",
+    "street": "test test",
+    "houseNumber": "33",
+    "zip": "55"
+  }
+}
+
+### get owner's cards
+GET {{local}}/api/cards/my-cards
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhjM2U2NGI5YjZmN2QyZWZlMTZmMGIiLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzczMjg0NTB9.-KzyhF7Zr3GqSS1ZAJ-bWMCQL35YVYz_uiGvFj-FKOQ
+
+{}
+
+### edit card
+PUT  {{local}}/api/cards/678e80233526d20328ade510
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhjM2U2NGI5YjZmN2QyZWZlMTZmMGIiLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzczMjg0NTB9.-KzyhF7Zr3GqSS1ZAJ-bWMCQL35YVYz_uiGvFj-FKOQ
+Content-Type: application/json
+
+{
+  "phone":"055888888"
+}

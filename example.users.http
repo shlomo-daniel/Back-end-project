@@ -27,8 +27,8 @@ GET {{local}}/api/users
 x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhjMzliZjIwYTQ1OTFhYTlhOWM4YTciLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzcyNDMxMDd9.RKI8HCA7chQaFRahu3zByhN3hLOtLDYEZBv-gLZVbT4
 
 ### get user by id
-GET {{local}}/api/users/678c39bf20a4591aa9a9c8a7
-x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhjMzliZjIwYTQ1OTFhYTlhOWM4YTciLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzcyNDM2MDl9.ikXZ1NwUNEgv9UZtxXKYiGEuKv07Iv2_-kOk29h8Lrc
+GET {{local}}/api/users/678c3e64b9b6f7d2efe16f0b
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhjM2U2NGI5YjZmN2QyZWZlMTZmMGIiLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzczMjg0NTB9.-KzyhF7Zr3GqSS1ZAJ-bWMCQL35YVYz_uiGvFj-FKOQ
 
 {
 }

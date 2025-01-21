@@ -78,6 +78,7 @@ router.get("/:id", authMW, async (req, res) => {
 
     if (!user) {
       res.status(400).send("user is not found");
+      return;
     }
 
     res.send(user);

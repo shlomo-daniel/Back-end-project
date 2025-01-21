@@ -21,7 +21,7 @@ const cardSchema = new mongoose.Schema({
     minlength: 2,
     maxlength: 400,
   },
-  bizPhone: {
+  phone: {
     type: String,
     required: true,
     minlength: 9,
@@ -47,14 +47,18 @@ const cardSchema = new mongoose.Schema({
     country: { type: String, minlength: 2, maxlength: 255 },
     city: { type: String, minlength: 2, maxlength: 255 },
     street: { type: String, minlength: 2, maxlength: 255 },
-    houseNumber: { type: Number, min: 2, max: 10 },
-    zip: { type: Number, min: 2, max: 15 },
+    houseNumber: { type: Number, min: 1, max: 100 },
+    zip: { type: Number, min: 0, max: 1000000 },
+  },
+  user_id: {
+    type: String,
+    required: true,
   },
   bizNumber: {
     type: Number,
     required: true,
     min: 100,
-    max: 3_999_999_999,
+    max: 3_999_999_999_999,
     unique: true,
   },
   likes: [
@@ -84,8 +88,8 @@ function validateCard(card) {
       country: Joi.string().min(2).max(255),
       city: Joi.string().min(2).max(255),
       street: Joi.string().min(2).max(255),
-      houseNumber: Joi.number().min(2).max(10),
-      zip: Joi.number().min(2).max(15),
+      houseNumber: Joi.number().min(1).max(1000),
+      zip: Joi.number().min(0).max(1000000),
     },
     likes: Joi.array()
       .items(Joi.string().pattern(/^[0-9a-fA-F]{24}$/))
@@ -96,13 +100,11 @@ function validateCard(card) {
 }
 
 async function generateBizNumber() {
-  while (true) {
-    const random = _.random(100, 9_999_999_999);
-    const card = await Card.find({ bizNumber: random });
+  const random = _.random(100, 9_999_999_999);
+  const card = await Card.findOne({ bizNumber: random });
 
-    if (!card) {
-      return random;
-    }
+  if (!card) {
+    return random;
   }
 }
 
