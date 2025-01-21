@@ -1,6 +1,4 @@
 @local=http://localhost:3005
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhjMzliZjIwYTQ1OTFhYTlhOWM4YTciLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzcyNDMxMDd9.RKI8HCA7chQaFRahu3zByhN3hLOtLDYEZBv-gLZVbT4
-
 @cardID=678f11afe02315ddcd9e638e
 
 ### get all cards
