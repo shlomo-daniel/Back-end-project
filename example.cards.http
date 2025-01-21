@@ -61,7 +61,12 @@ x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhjM2U2NGI5YjZmN2
 {}
 
 ### like card
-PATCH {{local}}/api/cards/{{cardID}}
+PATCH {{local}}/api/cards/like/{{cardID}}
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhjM2U2NGI5YjZmN2QyZWZlMTZmMGIiLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzczMjg0NTB9.-KzyhF7Zr3GqSS1ZAJ-bWMCQL35YVYz_uiGvFj-FKOQ
+
+{}
+### unlike card
+PATCH {{local}}/api/cards/unlike/{{cardID}}
 x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzhjM2U2NGI5YjZmN2QyZWZlMTZmMGIiLCJiaXoiOnRydWUsImFkbWluIjp0cnVlLCJpYXQiOjE3MzczMjg0NTB9.-KzyhF7Zr3GqSS1ZAJ-bWMCQL35YVYz_uiGvFj-FKOQ
 
 {}

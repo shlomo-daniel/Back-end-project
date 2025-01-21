@@ -132,7 +132,7 @@ router.post("/", authMW, async (req, res) => {
 });
 
 // like card
-router.patch("/:id", authMW, async (req, res) => {
+router.patch("/like/:id/", authMW, async (req, res) => {
   try {
     const { id: cardID } = req.params;
     const { _id: userID } = req.user;
@@ -144,6 +144,37 @@ router.patch("/:id", authMW, async (req, res) => {
       },
       { new: true }
     );
+
+    if (!likedCard) {
+      res.status(404).send("card not found");
+      return;
+    }
+
+    res.json(likedCard);
+  } catch (error) {
+    res.status(500).send({ error, message: "server error" });
+  }
+});
+
+// remove like from card
+router.patch("/unlike/:id", authMW, async (req, res) => {
+  try {
+    const { id: cardID } = req.params;
+    const { _id: userID } = req.user;
+
+    const likedCard = await Card.findByIdAndUpdate(
+      cardID,
+      {
+        $pull: { likes: userID },
+      },
+      { new: true }
+    );
+
+    if (!likedCard) {
+      res.status(404).send("card not found");
+      return;
+    }
+
     res.json(likedCard);
   } catch (error) {
     res.status(500).send({ error, message: "server error" });
