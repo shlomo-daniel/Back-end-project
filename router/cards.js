@@ -55,7 +55,6 @@ router.put("/:id", authMW, async (req, res) => {
     });
     const foundCardObj = foundCard.toObject();
 
-    console.log(req.body, "body");
     const updatedCard = {
       ...foundCardObj,
       ...req.body,
@@ -72,6 +71,31 @@ router.put("/:id", authMW, async (req, res) => {
     });
 
     res.json(editedCard);
+  } catch (error) {
+    res.status(500).send({ error, message: "server error" });
+  }
+});
+
+// delete card
+router.delete("/:id", authMW, async (req, res) => {
+  try {
+    const { id: cardID } = req.params;
+    const { admin, _id: userID } = req.user;
+    const cardToDelete = Card.findById(cardID);
+    const { user_id: user_id_in_card } = cardToDelete;
+
+    if (userID !== user_id_in_card && !admin) {
+      res.status(401).send("unauthrized to delete card");
+      return;
+    }
+
+    const deletedCard = await Card.findByIdAndDelete(cardID);
+
+    res.json(
+      deletedCard
+        ? `card with the id of ${deletedCard._id} was deleted`
+        : "card was not found to delete"
+    );
   } catch (error) {
     res.status(500).send({ error, message: "server error" });
   }
@@ -106,5 +130,8 @@ router.post("/", authMW, async (req, res) => {
     res.status(500).send({ error, message: "server error" });
   }
 });
+
+// like card
+// router.patch("/:id",authMW,(req,res)=>{})
 
 module.exports = router;
